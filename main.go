@@ -18,6 +18,12 @@ func main() {
 		return
 	}
 	input := os.Args[1]
+	for _, char := range input {
+		if char < 32 || char > 126 {
+			fmt.Println("inprintable char not allowed")
+			return
+		}
+	}
 
 	input = strings.ReplaceAll(input, "\\n", "\n")
 	lines := function.Split(string(ascii))
@@ -28,65 +34,62 @@ func main() {
 		chatr++
 
 	}
-	
-		var rida []string
-		rid := ""
-		ste := false
 
-		if input[len(input)-1] == '\n'{
-			ste = true
-		}
-	
-		for _, x := range input{
-			if x != '\n'{
-				rid += string(x)
-			}else{
-				if rid!= ""{
-					rida = append(rida, rid)
-					rid = ""
-				}
-				if x == '\n'{
-					rida = append(rida, "\n")
-				}
-				
+	var slice []string // slice
+	str := ""          // str
+	invalid := false   // isfinish ola islastelement
+
+	if input[len(input)-1] == '\n' {
+		invalid = true
+	}
+
+	for _, x := range input {
+		if x != '\n' {
+			str += string(x)
+		} else {
+			if str != "" {
+				slice = append(slice, str)
+				str = ""
 			}
-		}
-		if rid != ""{
-			rida = append(rida, rid)
-			if ste{
-				rida = append(rida,"\n")
+			if x == '\n' {
+				slice = append(slice, "\n")
 			}
+
 		}
-		
-	
-		
-	
-	contr := 0
-	for _, n := range rida {
+	}
+	if str != "" {
+		slice = append(slice, str)
+		if invalid {
+			slice = append(slice, "\n")
+		}
+	}
+
+	counter := 0 // counter
+	for _, n := range slice {
 		if n == "\n" {
-			contr++
+			counter++
 		}
 
 	}
-	if contr == len(rida) {
-		for contr > 0 {
+	if counter == len(slice) {
+		for counter > 0 {
 			fmt.Println()
-			contr--
+			counter--
 
 		}
 		return
 	}
 
-	for i := 0; i < len(rida); i++ {
-		if rida[i] != "\n" {
-			nrida := function.Rida(rida[i],asciiarr)
-			for i := 0; i < len(nrida); i++ {
-				fmt.Println(nrida[i])
+	for i := 0; i < len(slice); i++ {
+		if slice[i] != "\n" {
+			lastElement := function.Rida(slice[i], asciiarr)
+			for i := 0; i < len(lastElement); i++ {
+				fmt.Println(lastElement[i])
 
 			}
 		} else {
-			if i > 1 && i < len(rida)-1 {
-				if !(rida[i-1] != "\n" && rida[i+1] != "\n") {
+			if i > 1 && i < len(slice)-1 {
+				if !(slice[i-1] != "\n" && slice[i+1] != "\n") {
 					fmt.Println()
 				}
 			}
