@@ -8,6 +8,16 @@ import (
 )
 
 func main() {
+	currhash, err := function.GetHash("standard.txt")
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+	validhash := "e194f1033442617ab8a78e1ca63a2061f5cc07a3f05ac226ed32eb9dfd22a6bf"
+	if currhash != validhash {
+		fmt.Println("invalid file hash, file is not the valid one.")
+		return
+	}
 	if len(os.Args) != 2 {
 		fmt.Println("go run . >---> input")
 		return
@@ -35,9 +45,9 @@ func main() {
 
 	}
 
-	var slice []string // slice
-	str := ""          // str
-	invalid := false   // isfinish ola islastelement
+	var slice []string
+	str := ""
+	invalid := false
 
 	if input[len(input)-1] == '\n' {
 		invalid = true
@@ -64,7 +74,7 @@ func main() {
 		}
 	}
 
-	counter := 0 // counter
+	counter := 0
 	for _, n := range slice {
 		if n == "\n" {
 			counter++
