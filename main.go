@@ -4,8 +4,6 @@ import (
 	"ascii-art/function"
 	"fmt"
 	"os"
-	"regexp"
-	"strings"
 )
 
 func main() {
@@ -36,15 +34,6 @@ func main() {
 		}
 	}
 
-	input = strings.ReplaceAll(input, "\\n", "\n")
-	// check if string only contains newline
-	re := regexp.MustCompile(`\n+`)
-	if re.MatchString(input) {
-		for range input {
-			fmt.Println()
-		}
-		return
-	}
 	lines := function.Split(string(ascii))
 	asciiarr := make(map[rune][]string)
 	chatr := 32
