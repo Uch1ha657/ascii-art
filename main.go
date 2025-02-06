@@ -98,8 +98,8 @@ func main() {
 
 			}
 		} else {
-			if i > 1 && i < len(slice)-1 {
-				if !(slice[i-1] != "\n" && slice[i+1] != "\n") {
+			if i+1 < len(slice) {
+				if slice[i] == "\n" && slice[i+1] == "\n" {
 					fmt.Println()
 				}
 			}
