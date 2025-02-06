@@ -42,7 +42,6 @@ func main() {
 	for _, v := range lines {
 		asciiarr[rune(chatr)] = v
 		chatr++
-
 	}
 
 	var slice []string
@@ -64,7 +63,6 @@ func main() {
 			if x == '\n' {
 				slice = append(slice, "\n")
 			}
-
 		}
 	}
 	if str != "" {
@@ -74,25 +72,9 @@ func main() {
 		}
 	}
 
-	counter := 0
-	for _, n := range slice {
-		if n == "\n" {
-			counter++
-		}
-
-	}
-	if counter == len(slice) {
-		for counter > 0 {
-			fmt.Println()
-			counter--
-
-		}
-		return
-	}
-
 	for i := 0; i < len(slice); i++ {
 		if slice[i] != "\n" {
-			lastElement := function.Rida(slice[i], asciiarr)
+			lastElement := function.GetArr(slice[i], asciiarr)
 			for i := 0; i < len(lastElement); i++ {
 				fmt.Println(lastElement[i])
 
@@ -104,7 +86,5 @@ func main() {
 				}
 			}
 		}
-
 	}
-
 }
