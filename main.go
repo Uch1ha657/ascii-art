@@ -4,6 +4,7 @@ import (
 	"ascii-art/function"
 	"fmt"
 	"os"
+	"regexp"
 	"strings"
 )
 
@@ -36,6 +37,14 @@ func main() {
 	}
 
 	input = strings.ReplaceAll(input, "\\n", "\n")
+	// check if string only contains newline
+	re := regexp.MustCompile(`\n+`)
+	if re.MatchString(input) {
+		for range input {
+			fmt.Println()
+		}
+		return
+	}
 	lines := function.Split(string(ascii))
 	asciiarr := make(map[rune][]string)
 	chatr := 32
@@ -46,11 +55,6 @@ func main() {
 
 	var slice []string
 	str := ""
-	invalid := false
-
-	if input[len(input)-1] == '\n' {
-		invalid = true
-	}
 
 	for _, x := range input {
 		if x != '\n' {
@@ -62,14 +66,13 @@ func main() {
 			}
 			if x == '\n' {
 				slice = append(slice, "\n")
+				str = ""
 			}
 		}
 	}
 	if str != "" {
 		slice = append(slice, str)
-		if invalid {
-			slice = append(slice, "\n")
-		}
+		str = ""
 	}
 
 	for i := 0; i < len(slice); i++ {
@@ -77,7 +80,6 @@ func main() {
 			lastElement := function.GetArr(slice[i], asciiarr)
 			for i := 0; i < len(lastElement); i++ {
 				fmt.Println(lastElement[i])
-
 			}
 		} else {
 			if i+1 < len(slice) {
