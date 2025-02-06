@@ -31,7 +31,7 @@ func Split(ascii string) [][]string {
 	return lines
 }
 
-// get the ascii represn
+// NO FUCKIN IDEA
 func GetArr(input string, asciiarr map[rune][]string) []string {
 	ret := make([]string, 8)
 	for _, v := range input {
@@ -49,11 +49,19 @@ func GetHash(filePath string) (string, error) {
 		return "", err
 	}
 	defer file.Close()
+
+	// sha256 = secure hash algorithm (256bit)
 	hash := sha256.New()
 
+	// reads the content of the file and fnefs lwe9t writes it to the hash
+	// meaning we update the hash progressively as the file is being read
 	_, err = io.Copy(hash, file)
 	if err != nil {
 		return "", err
 	}
+
+	// return as a hexadecimal string (cuz hash is a bye slice)
+	// cuz hashes are usually represented in hexadecimal
+	// the hash.sum func computes and returns the final hash
 	return fmt.Sprintf("%x", hash.Sum(nil)), nil
 }
