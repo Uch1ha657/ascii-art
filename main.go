@@ -4,6 +4,7 @@ import (
 	"ascii-art/function"
 	"fmt"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -34,6 +35,7 @@ func main() {
 		}
 	}
 
+	input = strings.ReplaceAll(input, "\\n", "\n")
 	lines := function.Split(string(ascii))
 	asciiarr := make(map[rune][]string)
 	chatr := 32
