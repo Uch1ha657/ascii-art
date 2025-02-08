@@ -36,7 +36,9 @@ func main() {
 	}
 
 	input = strings.ReplaceAll(input, "\\n", "\n")
+	// get every 8 lines
 	lines := function.Split(string(ascii))
+	// turn our lines to a map represented by runes
 	asciiarr := make(map[rune][]string)
 	chatr := 32
 	for _, v := range lines {
@@ -44,9 +46,9 @@ func main() {
 		chatr++
 	}
 
+	// split our input to words and \n
 	var slice []string
 	str := ""
-
 	for _, x := range input {
 		if x != '\n' {
 			str += string(x)

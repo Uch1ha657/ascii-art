@@ -31,7 +31,7 @@ func Split(ascii string) [][]string {
 	return lines
 }
 
-// NO FUCKIN IDEA
+// get our intended result
 func GetArr(input string, asciiarr map[rune][]string) []string {
 	ret := make([]string, 8)
 	for _, v := range input {
